@@ -1,0 +1,15 @@
+<%- include('./partials/headHeader') %>
+
+<body>
+    <div class="mainContent">
+        <form method = "POST" action="/login">
+            <label for="name">Name:</label>
+            <input type="text" name = "name" placeholder="(Ex. Eric Fithian)">
+
+            <label for="password">Password:</label>
+            <input type="password" name = "password" placeholder="(Ex. ********)">
+
+            <input type="submit" value = "Sign In">
+        </form>
+    </div>
+</body>

@@ -21,14 +21,82 @@ app.use(express.static("Public"))
 app.use(methodOverride('_method'))
 app.use(express.json())
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+const seedEmployees = require('./models/seeddata.js')
 
 app.get('/', (req,res)=> {
-  res.render('index.ejs')
+  res.redirect('/listAll')
+})
+
+app.get('/listAll', async (req,res,next)=> {
+  try {
+    res.render('index.ejs',{employees: seedEmployees})
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
+
+app.get('/newEmployee', async (req,res,next)=> {
+  try {
+    res.render('createNew.ejs')
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
+
+app.post('/createNew', async (req,res,next)=> {
+  try {
+
+        const employeeInfo = req.body
+
+        let salt = await bcrypt.genSalt(12)
+
+        const hash = await bcrypt.hash(employeeInfo.password, salt);
+        employeeInfo.password = hash
+
+        console.log(employeeInfo)
+
+        seedEmployees.push(employeeInfo)
+
+        res.redirect('/')
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
+
+app.get('/signIn', async (req,res,next)=> {
+  try {
+    res.render('signIn.ejs')
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
+
+app.post('/login', async (req,res,next)=> {
+  try {
+    console.log(req.body)
+    res.redirect('/')
+  } catch(err) {
+    console.log(err)
+    next()
+  }
 })
 
 
-app.listen(), ()=> {
-  console.log(`Listening on port !`)
-}
+
+app.listen(PORT, (req,res)=> {
+  console.log(`Listening on port ${PORT}!`)
+})
+
+// app.get('/listAll' async (req,res,next)=> {
+//   try {
+
+//   } catch(err) {
+//     console.log(err)
+//     next()
+//   }
+// })
+
