@@ -35,6 +35,15 @@ app.get('/listAll', async (req,res,next)=> {
   }
 })
 
+app.get('/seed', async (req,res,next)=> {
+  try {
+    const newEmps = await Users.createMany(seedEmployees)
+  } catch(err){
+    console.log(err)
+    next()
+  }
+})
+
 app.get('/newEmployee', async (req,res,next)=> {
   try {
     res.render('createNew.ejs')
