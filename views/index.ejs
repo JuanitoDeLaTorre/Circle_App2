@@ -10,9 +10,10 @@
                     <p><strong>Position: </strong><%= employee.position %></p>
                     <p><strong>Payment Type: </strong><%= employee.paymentType %></p>
                     <div id="buttons">
-                        <a href="http://localhost:4000/updateEmployee/<%=employee.name %>"><button >UPDATE</button></a>
-                        <a href="http://localhost:4000/deleteEmployee/<%=employee.name %>"><button>DELETE</button></a> 
+                        <a href="http://localhost:4000/updateEmployee/<%=employee.name %>"><button id = "update">Update</button></a>
+                        <a href="http://localhost:4000/deleteEmployee/<%=employee.name %>"><button id = "delete">Delete</button></a> 
                     </div>
+                   <a href="http://localhost:4000/submitSchedule/<%=employee.name %>"><button id = "schedule">Submit Schedule</button></a> 
                    
 
                 </div>

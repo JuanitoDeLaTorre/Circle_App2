@@ -169,6 +169,15 @@ app.post('/newMessage', async (req,res,next)=> {
   }
 })
 
+app.get('/submitSchedule/:name', async (req,res,next)=> {
+  try {
+    res.render('submitSchedule.ejs',{name:req.params.name})
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
+
 app.listen(PORT, (req,res)=> {
   console.log(process.env.MONGO_DB_URI)
 
