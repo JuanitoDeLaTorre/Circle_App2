@@ -20,14 +20,31 @@ app.use(express.static("Public"))
 app.use(methodOverride('_method'))
 app.use(express.json())
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+const seedEmployees = require('./models/seeddata.js')
 
 app.get('/', (req,res)=> {
-  res.render('index.ejs')
+  res.redirect('/listAll')
+})
+
+app.get('/listAll', async (req,res,next)=> {
+  try {
+    res.render('index.ejs',{employees: seedEmployees})
+  } catch(err) {
+    console.log(err)
+    next()
+  }
 })
 
 
 app.listen(PORT, (req,res)=> {
   console.log(`Listening on port ${PORT}!`)
 })
+
+// app.get('/listAll' async (req,res,next)=> {
+//   try {
+
+//   } catch(err) {
+//     console.log(err)
+//     next()
+//   }
+// })
