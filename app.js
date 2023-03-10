@@ -1,7 +1,8 @@
 //Important requires of node modules
-var express = require('express');
-var app = express();
-var path = require('path');
+const express = require('express');
+const app = express();
+
+const path  = require('path');
 const methodOverride = require("method-override")
 const bcrypt = require("bcryptjs")
 const session = require("express-session")
@@ -85,6 +86,7 @@ app.post('/login', async (req,res,next)=> {
 })
 
 
+
 app.listen(PORT, (req,res)=> {
   console.log(`Listening on port ${PORT}!`)
 })
@@ -97,3 +99,4 @@ app.listen(PORT, (req,res)=> {
 //     next()
 //   }
 // })
+
