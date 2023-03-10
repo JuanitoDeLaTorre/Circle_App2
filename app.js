@@ -8,7 +8,7 @@ const bcrypt = require("bcryptjs")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
 // const Users = require('./models/Users.js')
-const { Users } = require('./models')
+const { Users,Messages } = require('./models')
 
 //CONFIG
 const PORT = 4000
@@ -146,6 +146,28 @@ app.get('/deleteEmployee/:name', async (req,res,next)=> {
   }
 })
 
+app.get('/message', async (req,res,next)=> {
+  try {
+    res.render('message.ejs')
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
+
+app.post('/newMessage', async (req,res,next)=> {
+  try {
+    console.log(req.body)
+    if(req.body.name === "") {
+      req.body.name = 'Anonymous'
+    }
+    const newMessage = await Messages.create(req.body)
+    res.redirect('/')
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
 
 app.listen(PORT, (req,res)=> {
   console.log(process.env.MONGO_DB_URI)

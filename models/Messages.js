@@ -4,8 +4,9 @@ const messagesSchema = new mongoose.Schema(
     {
         name: {
             type: String,
+            default: 'Anonymous'
         },
-        messege: {
+        message: {
             type: String,
             required: [true, "Please provide a messege"],
         }
