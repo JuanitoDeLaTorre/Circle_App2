@@ -7,7 +7,8 @@ const methodOverride = require("method-override")
 const bcrypt = require("bcryptjs")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
-const Users = require('./models/Users.js')
+// const Users = require('./models/Users.js')
+const { Users } = require('./models')
 
 //CONFIG
 const PORT = 4000
@@ -30,7 +31,9 @@ app.get('/', (req,res)=> {
 
 app.get('/listAll', async (req,res,next)=> {
   try {
-    res.render('index.ejs',{employees: seedEmployees})
+    const allEmps = await Users.find({})
+    res.render('index.ejs',{employees: allEmps})
+    
   } catch(err) {
     console.log(err)
     next()
@@ -39,7 +42,11 @@ app.get('/listAll', async (req,res,next)=> {
 
 app.get('/seed', async (req,res,next)=> {
   try {
-    const newEmps = await Users.insertMany(seedEmployees)
+    console.log("Hitting route")
+    const swag = await Users.insertMany(seedEmployees)
+    console.log(swag)
+
+    res.redirect('/')
   } catch(err){
     console.log(err)
     next()
@@ -67,8 +74,9 @@ app.post('/createNew', async (req,res,next)=> {
 
         console.log(employeeInfo)
 
-        seedEmployees.push(employeeInfo)
-
+        const newEmp = await Users.create(employeeInfo)
+        // seedEmployees.push(employeeInfo)
+        console.log("Successful new user creation!")
         res.redirect('/')
   } catch(err) {
     console.log(err)
