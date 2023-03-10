@@ -1,4 +1,16 @@
 <%- include('./partials/headHeader') %>
 <body>
-    <h1>IS THIS THING ON?</h1>
+    <div class="mainContent">
+        <h1>EMPLOYEE LIST</h1>
+    <div class = "listEmployees">
+        <% employees.forEach((employee)=> { %>
+                <div class="block">
+                    <h4>Employee Name: <%= employee.name %></h4>
+                    <p><strong>Department: </strong><%= employee.department %></p>
+                    <p><strong>Position: </strong><%= employee.position %></p>
+                    <p><strong>Payment Type: </strong><%= employee.paymentType %></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
 </body>
