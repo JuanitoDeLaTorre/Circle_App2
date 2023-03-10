@@ -1,4 +1,4 @@
-requestAnimationFrame('../config/connection');
+require('../config/connection.js');
 
 module.exports = {
     Users: require('./Users'),
