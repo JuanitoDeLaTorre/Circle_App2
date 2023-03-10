@@ -22,6 +22,16 @@ app.use(express.static("Public"))
 app.use(methodOverride('_method'))
 app.use(express.json())
 
+app.use(
+  session({
+    store: MongoStore.create({mongoUrl:process.env.MONGO_DB_URI}),
+    secret: "super secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge: 1000 * 60 * 60 * 24 * 7}
+    
+}))
+
 
 const seedEmployees = require('./models/seeddata.js')
 
@@ -103,6 +113,38 @@ app.post('/login', async (req,res,next)=> {
   }
 })
 
+
+app.get('/updateEmployee/:name', async (req,res,next)=> {
+  try {
+    const empToUpdate = await Users.findOne({name:req.params.name})
+    console.log(empToUpdate)
+    res.render('update.ejs', {employeeToUpdate: empToUpdate})
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
+
+app.put('/changeEmployee/:name', async (req,res,next)=> {
+  try {
+    const updateEmp = await Users.findOneAndUpdate({name:req.params.name},req.body,{new:true}) 
+    res.redirect('/')
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
+
+app.get('/deleteEmployee/:name', async (req,res,next)=> {
+  try {
+    
+    const deleteEmployee = await Users.findOneAndDelete({name:req.params.name}) 
+    res.redirect('/')
+  } catch(err) {
+    console.log(err)
+    next()
+  }
+})
 
 
 app.listen(PORT, (req,res)=> {
