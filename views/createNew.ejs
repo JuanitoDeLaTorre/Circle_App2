@@ -1,0 +1,26 @@
+<%- include('./partials/headHeader') %>
+
+<body>
+    <div class="mainContent">
+        <form method = "POST" action="/createNew">
+
+            <label for="name">Name:</label>
+            <input type="text" name = "name" placeholder="(Ex. Eric Fithian)">
+
+            <label for="password">Password:</label>
+            <input type="text" name = "password" placeholder="(Ex. ********)">
+
+            <label for="department">Department:</label>
+            <input type="text" name = "department" placeholder="(Ex. HR)">
+
+            <label for="position">Position:</label>
+            <input type="text" name = "position" placeholder = "(Ex. Coffee Monkey)">
+
+            <label for="paymentType">Payment Type:</label>
+            <input type="text" name = "paymentType" placeholder="(Ex. hourly or salary)">
+
+            <input type="submit" value = "Submit New Employee">
+
+        </form>
+    </div>
+</body>
