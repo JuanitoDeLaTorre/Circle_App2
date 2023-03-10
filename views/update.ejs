@@ -1,0 +1,23 @@
+<%- include('./partials/headHeader') %>
+
+<body>
+    <div class="mainContent">
+        <form method= "POST" action="/changeEmployee/<%= employeeToUpdate.name %>?_method=PUT">
+            
+            <label for="name">Name: (previously <%= employeeToUpdate.name %>)</label>
+            <input type="text" name = "name">
+
+            <label for="department">Department: (previously <%= employeeToUpdate.department %>)</label>
+            <input type="text" name = "department">
+
+            <label for="position">Position: (previously <%= employeeToUpdate.position %>)</label>
+            <input type="text" name = "position">
+
+            <label for="paymentType">Payment Type: (previously <%= employeeToUpdate.paymentType %>)</label>
+            <input type="text" name = "paymentType">
+
+            <input type = "submit" value = "Submit New Details">
+            
+        </form>
+    </div>
+</body>
