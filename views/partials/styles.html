@@ -27,13 +27,27 @@
     }
 
     header h1 {
-        font-size: 0.9em;
+        font-size: 1.2em;
+        transition: all 500ms ease-in-out;
+    }
+
+    header h1:hover {
+        text-shadow: 0px 0px 30px rgb(244, 247, 198);
     }
 
     #logo {
         height: 60px;
         width: auto;
     }
+
+    #logo:hover {
+        animation: 3s spin cubic-bezier(0.23, 1, 0.320, 1);
+    }
+
+    @keyframes spin {
+    0%{transform: rotate(0deg)}
+    100%{transform: rotate(720deg)}
+}
 
     nav{
         margin-right: 30px;
@@ -85,12 +99,12 @@
         border: solid grey 3px;
     }
 
-    form label, form input {
+    #createForm label, form input {
         display: block;
         margin: 9px;
     }
 
-    form input {
+    #createForm input {
         width: 200px;
         border-radius: 20px;
         border: solid grey 2px;
@@ -98,20 +112,20 @@
         color: rgb(65, 65, 65);
     }
 
-    form input:focus {
+    #createForm input:focus {
         border: solid rgb(78, 78, 158) 2px;
         box-shadow: 0px 0px 8px grey;
     }
 
-    form {
+    #createForm {
         margin-left: 15%;
     }
 
     button {
         height: auto;
         width: auto;
-        background-color: white;
-        color: black;
+        background-color: rgb(54, 54, 54);
+        color: rgb(252, 248, 248);
         border: solid rgb(54, 54, 54) 1px;
         border-radius: 10px;
         cursor: pointer;
@@ -125,8 +139,18 @@
     button:hover {
         transform: scale(105%);
         box-shadow: 0px 0px 10px black;
+        color: rgb(56, 56, 56);
+        background-color: rgb(255, 255, 255);
+    }
+
+    #delete:hover {
+        background-color: rgb(148, 13, 13);
         color: white;
-        background-color: rgb(50,50,50);
+    }
+
+    #update:hover {
+        background-color: green;
+        color: white;
     }
 
     #message {
@@ -134,7 +158,30 @@
         width: 400px;
         color: black;
         border-radius: 10px;
+        font-family: inherit;
+        margin-left: 10px;
     }
 
+    .day {
+        display: flex;
+        display: inline-block;
+        gap: 30px;
+    }
+
+    #schedule {
+        margin-left: 10%;
+        margin-top: 15px;
+    }
+
+    #scheduleForm {
+        margin: 30px;
+       
+    }
+
+    #scheduleForm input[type=radio]{
+        display: inline;
+    }
+
+    
 
 </style>
