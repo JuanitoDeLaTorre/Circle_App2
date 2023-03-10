@@ -1,0 +1,14 @@
+<%- include('./partials/headHeader') %>
+
+<body>
+    <div class="mainContent">
+        <h1>Submit Your Message to HR</h1>
+        <form method = "POST" action="/newMessage">
+            <label for="name">Name:</label>
+            <input type="text" name = "name" placeholder="(Leave blank to remain anonymous)">
+
+            <input type="text" name = "message" id = "message" placeholder="(Be honest!)" style = "resize:both">
+            <input type="submit" value = "Send Message">
+        </form>
+    </div>
+</body>

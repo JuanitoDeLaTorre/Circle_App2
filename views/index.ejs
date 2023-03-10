@@ -9,8 +9,11 @@
                     <p><strong>Department: </strong><%= employee.department %></p>
                     <p><strong>Position: </strong><%= employee.position %></p>
                     <p><strong>Payment Type: </strong><%= employee.paymentType %></p>
-                    <a href="http://localhost:4000/updateEmployee/<%=employee.name %>"><button >UPDATE</button></a>
-                    <a href="http://localhost:4000/deleteEmployee/<%=employee.name %>"><button>DELETE</button></a>
+                    <div id="buttons">
+                        <a href="http://localhost:4000/updateEmployee/<%=employee.name %>"><button >UPDATE</button></a>
+                        <a href="http://localhost:4000/deleteEmployee/<%=employee.name %>"><button>DELETE</button></a> 
+                    </div>
+                   
 
                 </div>
             <% }) %>
