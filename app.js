@@ -1,16 +1,16 @@
 //Important requires of node modules
 const express = require('express');
 const app = express();
-
+require('dotenv').config();
 const path  = require('path');
 const methodOverride = require("method-override")
 const bcrypt = require("bcryptjs")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
+const Users = require('./models/Users.js')
 
 //CONFIG
 const PORT = 4000
-
 
 
 // view engine setup
@@ -20,6 +20,7 @@ app.set("view engine","ejs")
 app.use(express.static("Public"))
 app.use(methodOverride('_method'))
 app.use(express.json())
+
 
 const seedEmployees = require('./models/seeddata.js')
 
@@ -38,7 +39,7 @@ app.get('/listAll', async (req,res,next)=> {
 
 app.get('/seed', async (req,res,next)=> {
   try {
-    const newEmps = await Users.createMany(seedEmployees)
+    const newEmps = await Users.insertMany(seedEmployees)
   } catch(err){
     console.log(err)
     next()
@@ -97,6 +98,8 @@ app.post('/login', async (req,res,next)=> {
 
 
 app.listen(PORT, (req,res)=> {
+  console.log(process.env.MONGO_DB_URI)
+
   console.log(`Listening on port ${PORT}!`)
 })
 

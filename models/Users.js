@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
                 type: String,
                 required: [true, "Please enter password"],
             },
-            deptartment: { 
+            department: { 
                 type: String,
                 required: [true, "Please enter department"]
             },
